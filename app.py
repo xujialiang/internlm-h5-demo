@@ -1,17 +1,24 @@
-# from flask import Flask, jsonify, request
 import gradio as gr
+import torch
+import requests
+from torchvision import transforms
 
-# app  = Flask(__name__)
+torch.hub._validate_not_a_forked_repo=lambda a,b,c: True
+model = torch.hub.load('pytorch/vision:v0.6.0', 'resnet18', pretrained=True).eval()
+response = requests.get("https://git.io/JJkYN")
+labels = response.text.split("\n")
 
-def api_say_hello():
-    data = request.get_json()
-    name = data['name']
-    result = say_hello(name)
-    return jsonify(result=result)
+def predict(inp):
+  inp = transforms.ToTensor()(inp).unsqueeze(0)
+  with torch.no_grad():
+    prediction = torch.nn.functional.softmax(model(inp)[0], dim=0)
+    confidences = {labels[i]: float(prediction[i]) for i in range(1000)}    
+  return confidences
 
-def say_hello(name):
-    return "Hello" + name + "!!"
-iface = gr.Interface(fn=say_hello, inputs="text", outputs="text")
-iface.launch(host='0.0.0.0', port=7861)
-
-# app.run(debug=True, host='0.0.0.0', port=7861)
+demo = gr.Interface(fn=predict, 
+             inputs=gr.inputs.Image(type="pil"),
+             outputs=gr.outputs.Label(num_top_classes=3),
+             examples=[["cheetah.jpg"]],
+             )
+             
+demo.launch()
