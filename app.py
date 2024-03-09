@@ -1,6 +1,6 @@
 import gradio as gr
 
-def greet(name):
+def predit(name):
     return "Hello" + name + "!!"
-iface = gr.Interface(fn=greet, inputs="text", outputs="text")
+iface = gr.Interface(fn=predit, inputs="text", outputs="text")
 iface.launch(share=True)
