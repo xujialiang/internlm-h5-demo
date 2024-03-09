@@ -1,0 +1,24 @@
+/* @import './base.css'; */
+
+html,body {
+  /* overscroll-behavior-y: contain; */
+  overflow: hidden;
+  height: 100%;
+}
+
+#app {
+  font-weight: normal;
+  -webkit-user-select: none;
+  height: 100%;
+}
+
+* {
+  touch-action: manipulation;
+}
+
+::-webkit-scrollbar {
+  width: 0 !important;
+}
+::-webkit-scrollbar {
+  width: 0 !important;height: 0;
+}
