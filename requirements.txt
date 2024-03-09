@@ -1,4 +1,1 @@
-mim
 requests
-torch
-torchvision
