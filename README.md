@@ -5,3 +5,7 @@
 
 ## 演示材料:
 [AIGC赋能保险代理人培训和业务拓展.pdf](./AIGC赋能保险代理人培训和业务拓展.pdf)
+
+<iframe 
+src="https://www.bilibili.com/video/BV1cx4y1D7cA/?vd_source=689a1f3d767ab1d67d4ad1fbb26ecf49" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> 
+</iframe>
